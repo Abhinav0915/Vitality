@@ -25,7 +25,7 @@ class _loginState extends State<login> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Container(
-              padding: EdgeInsets.fromLTRB(0, 80, 0, 0),
+              padding: const EdgeInsets.fromLTRB(0, 80, 0, 0),
               alignment: Alignment.center,
               child: Image.asset(
                 "assets/images/logo.png",
@@ -34,7 +34,7 @@ class _loginState extends State<login> {
               ),
             ),
             Container(
-              padding: EdgeInsets.fromLTRB(50, 0, 0, 0),
+              padding: const EdgeInsets.fromLTRB(50, 0, 0, 0),
               child: SizedBox(
                   width: 300,
                   child: TextFormField(
@@ -64,7 +64,7 @@ class _loginState extends State<login> {
               height: 30.0,
             ),
             Container(
-              padding: EdgeInsets.fromLTRB(150, 0, 0, 0),
+              padding: const EdgeInsets.fromLTRB(150, 0, 0, 0),
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   alignment: Alignment.center,
