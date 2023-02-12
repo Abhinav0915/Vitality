@@ -4,6 +4,8 @@ import '../constants/color_constants.dart';
 import 'package:flutter/material.dart';
 import '../utils/appbar.dart';
 
+bool _obscureText = true;
+
 class signup extends StatefulWidget {
   const signup({Key? key}) : super(key: key);
 
@@ -12,8 +14,40 @@ class signup extends StatefulWidget {
 }
 
 class _signupState extends State<signup> {
-  TextEditingController _passwordTextController = TextEditingController();
-  TextEditingController _emailTextController = TextEditingController();
+  bool _hasInput3 = false;
+  bool _hasInput4 = false;
+  bool _hasInput5 = false;
+
+  final TextEditingController _nameController = TextEditingController();
+  final TextEditingController _passwordTextController = TextEditingController();
+  final TextEditingController _emailTextController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    _nameController.addListener(_onTextChanged5);
+    _emailTextController.addListener(_onTextChanged3);
+    _passwordTextController.addListener(_onTextChanged4);
+  }
+
+  void _onTextChanged3() {
+    setState(() {
+      _hasInput3 = _emailTextController.text.trim().isNotEmpty;
+    });
+  }
+
+  void _onTextChanged4() {
+    setState(() {
+      _hasInput4 = _passwordTextController.text.trim().isNotEmpty;
+    });
+  }
+
+  void _onTextChanged5() {
+    setState(() {
+      _hasInput5 = _nameController.text.trim().isNotEmpty;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,6 +74,7 @@ class _signupState extends State<signup> {
               child: SizedBox(
                   width: 300,
                   child: TextFormField(
+                    controller: _nameController,
                     decoration: const InputDecoration(
                       suffixIcon: Icon(Icons.person),
                       border: UnderlineInputBorder(),
@@ -55,16 +90,19 @@ class _signupState extends State<signup> {
             Container(
               padding: const EdgeInsets.fromLTRB(50, 0, 0, 0),
               child: SizedBox(
-                  width: 300,
-                  child: TextFormField(
-                    controller: _emailTextController,
-                    decoration: const InputDecoration(
-                      suffixIcon: Icon(Icons.email),
-                      border: UnderlineInputBorder(),
-                      labelText: "Enter Email ID",
-                    ),
-                  )),
+                width: 300,
+                child: TextFormField(
+                  keyboardType: TextInputType.emailAddress,
+                  controller: _emailTextController,
+                  decoration: const InputDecoration(
+                    suffixIcon: Icon(Icons.email),
+                    border: UnderlineInputBorder(),
+                    labelText: "Enter Email ID",
+                  ),
+                ),
+              ),
             ),
+
             //Spacing between Containers
             const SizedBox(
               height: 10.0,
@@ -76,9 +114,18 @@ class _signupState extends State<signup> {
                   width: 300,
                   child: TextFormField(
                     controller: _passwordTextController,
-                    obscureText: true,
-                    decoration: const InputDecoration(
-                      suffixIcon: Icon(Icons.visibility_off),
+                    obscureText: _obscureText,
+                    decoration: InputDecoration(
+                      suffixIcon: IconButton(
+                        icon: Icon(_obscureText
+                            ? Icons.visibility
+                            : Icons.visibility_off),
+                        onPressed: () {
+                          setState(() {
+                            _obscureText = !_obscureText;
+                          });
+                        },
+                      ),
                       border: UnderlineInputBorder(),
                       labelText: "Enter Password",
                     ),
@@ -88,6 +135,7 @@ class _signupState extends State<signup> {
             const SizedBox(
               height: 30.0,
             ),
+            //Button Container
             Center(
               child: Container(
                 width: 200.0,
@@ -101,18 +149,20 @@ class _signupState extends State<signup> {
                       borderRadius: BorderRadius.circular(20.0),
                     ),
                   ),
-                  onPressed: () {
-                    FirebaseAuth.instance
-                        .createUserWithEmailAndPassword(
-                            email: _emailTextController.text,
-                            password: _passwordTextController.text)
-                        .then((value) {
-                      print("User Created");
-                      Navigator.pushNamed(context, '/homepage');
-                    }).onError((error, stackTrace) {
-                      print("Error ${error.toString()}");
-                    });
-                  },
+                  onPressed: _hasInput3 && _hasInput4 && _hasInput5
+                      ? () {
+                          FirebaseAuth.instance
+                              .createUserWithEmailAndPassword(
+                                  email: _emailTextController.text,
+                                  password: _passwordTextController.text)
+                              .then((value) {
+                            print("User Created");
+                            Navigator.pushNamed(context, '/homepage');
+                          }).onError((error, stackTrace) {
+                            print("Error ${error.toString()}");
+                          });
+                        }
+                      : null,
                   child: const Text(
                     'Sign Up',
                     style: TextStyle(
@@ -126,6 +176,7 @@ class _signupState extends State<signup> {
             const SizedBox(
               height: 10.0,
             ),
+            //Text Container
             Center(
               child: Row(
                 children: [

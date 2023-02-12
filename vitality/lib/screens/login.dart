@@ -4,6 +4,8 @@ import 'package:vitality/constants/color_constants.dart';
 import 'package:vitality/screens/homepage.dart';
 import '../utils/appbar.dart';
 
+bool _obscureText = true;
+
 class login extends StatefulWidget {
   const login({Key? key}) : super(key: key);
 
@@ -12,8 +14,37 @@ class login extends StatefulWidget {
 }
 
 class _loginState extends State<login> {
-  TextEditingController _passwordTextController = TextEditingController();
-  TextEditingController _emailTextController = TextEditingController();
+  final TextEditingController _passwordTextController = TextEditingController();
+  final TextEditingController _emailTextController = TextEditingController();
+
+  bool _hasInput1 = false;
+  bool _hasInput2 = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _emailTextController.addListener(_onTextChanged);
+    _passwordTextController.addListener(_onTextChanged2);
+  }
+
+  @override
+  void dispose() {
+    _passwordTextController.dispose();
+    _emailTextController.dispose();
+    super.dispose();
+  }
+
+  void _onTextChanged() {
+    setState(() {
+      _hasInput1 = _emailTextController.text.trim().isNotEmpty;
+    });
+  }
+
+  void _onTextChanged2() {
+    setState(() {
+      _hasInput2 = _passwordTextController.text.trim().isNotEmpty;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,6 +70,7 @@ class _loginState extends State<login> {
               child: SizedBox(
                   width: 300,
                   child: TextFormField(
+                    textInputAction: TextInputAction.next,
                     controller: _emailTextController,
                     decoration: const InputDecoration(
                       suffixIcon: Icon(Icons.person),
@@ -55,10 +87,20 @@ class _loginState extends State<login> {
               child: SizedBox(
                   width: 300,
                   child: TextFormField(
+                    textInputAction: TextInputAction.done,
+                    obscureText: _obscureText,
                     controller: _passwordTextController,
-                    obscureText: true,
-                    decoration: const InputDecoration(
-                      suffixIcon: Icon(Icons.visibility_off),
+                    decoration: InputDecoration(
+                      suffixIcon: IconButton(
+                        icon: Icon(_obscureText
+                            ? Icons.visibility
+                            : Icons.visibility_off),
+                        onPressed: () {
+                          setState(() {
+                            _obscureText = !_obscureText;
+                          });
+                        },
+                      ),
                       border: UnderlineInputBorder(),
                       labelText: "Enter Password",
                     ),
@@ -80,35 +122,43 @@ class _loginState extends State<login> {
                       borderRadius: BorderRadius.circular(20.0),
                     ),
                   ),
-                  onPressed: () {
-                    FirebaseAuth.instance
-                        .signInWithEmailAndPassword(
-                            email: _emailTextController.text,
-                            password: _passwordTextController.text)
-                        .then((value) {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => homepage()));
-                    }).catchError((error) {
-                      showDialog(
-                        context: context,
-                        builder: (BuildContext context) {
-                          return AlertDialog(
-                            backgroundColor: AppColors.purple,
-                            title: Text("Error"),
-                            content: Text("Invalid email or password"),
-                            actions: <Widget>[
-                              OutlinedButton(
-                                child: Text("OK"),
-                                onPressed: () {
-                                  Navigator.of(context).pop();
-                                },
-                              ),
-                            ],
-                          );
-                        },
-                      );
-                    });
-                  },
+                  onPressed: _hasInput1 && _hasInput2
+                      ? () {
+                          FirebaseAuth.instance
+                              .signInWithEmailAndPassword(
+                                  email: _emailTextController.text,
+                                  password: _passwordTextController.text)
+                              .then((value) {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => homepage()));
+                          }).catchError((error) {
+                            showDialog(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return AlertDialog(
+                                  elevation: 24.0,
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius:
+                                          BorderRadius.circular(15.0)),
+                                  backgroundColor: AppColors.purple,
+                                  title: Text("Error"),
+                                  content: Text("Invalid email or password"),
+                                  actions: <Widget>[
+                                    OutlinedButton(
+                                      child: Text("OK"),
+                                      onPressed: () {
+                                        Navigator.of(context).pop();
+                                      },
+                                    ),
+                                  ],
+                                );
+                              },
+                            );
+                          });
+                        }
+                      : null,
                   child: const Text(
                     'Log In',
                     style: TextStyle(
