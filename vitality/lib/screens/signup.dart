@@ -1,8 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 
-import 'constants/color_constants.dart';
+import '../constants/color_constants.dart';
 import 'package:flutter/material.dart';
-import 'utils/appbar.dart';
+import '../utils/appbar.dart';
 
 class signup extends StatefulWidget {
   const signup({Key? key}) : super(key: key);
@@ -95,7 +95,7 @@ class _signupState extends State<signup> {
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
                     alignment: Alignment.center,
-                    primary: AppColors.blue,
+                    primary: AppColors.purple,
                     onPrimary: AppColors.white,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20.0),
@@ -139,7 +139,7 @@ class _signupState extends State<signup> {
                     },
                     child: const Text(
                       "login",
-                      style: TextStyle(color: AppColors.blue),
+                      style: TextStyle(color: AppColors.purple),
                     ),
                   ),
                 ],

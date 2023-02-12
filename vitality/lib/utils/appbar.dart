@@ -6,7 +6,7 @@ class Appbar {
     return AppBar(
       automaticallyImplyLeading: false,
       shadowColor: AppColors.black,
-      backgroundColor: AppColors.blue,
+      backgroundColor: AppColors.purple,
       centerTitle: true,
       title: Text(title),
     );
