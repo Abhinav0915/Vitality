@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:vitality/homepage.dart';
 import 'package:vitality/login.dart';
+import 'package:vitality/signup.dart';
 
 void main() {
   runApp(const Vitality());
@@ -18,8 +20,9 @@ class Vitality extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/': (context) => const login(),
+        '/homepage': (context) => const homepage(),
+        '/signup' : ((context) =>  const signup()),
       },
-      
     );
   }
 }

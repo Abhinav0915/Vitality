@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:vitality/constants/color_constants.dart';
+import 'utils/appbar.dart';
 
 class login extends StatefulWidget {
   const login({Key? key}) : super(key: key);
@@ -12,12 +13,7 @@ class _loginState extends State<login> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        shadowColor: AppColors.black,
-        backgroundColor: AppColors.blue,
-        centerTitle: true,
-        title: const Text("Login To Vitality"),
-      ),
+      appBar: Appbar.getAppBar("Login"),
       resizeToAvoidBottomInset: false,
       backgroundColor: AppColors.black,
       body: SingleChildScrollView(
@@ -53,6 +49,7 @@ class _loginState extends State<login> {
               child: SizedBox(
                   width: 300,
                   child: TextFormField(
+                    obscureText: true,
                     decoration: const InputDecoration(
                       suffixIcon: Icon(Icons.visibility_off),
                       border: UnderlineInputBorder(),
@@ -63,27 +60,56 @@ class _loginState extends State<login> {
             const SizedBox(
               height: 30.0,
             ),
-            Container(
-              padding: const EdgeInsets.fromLTRB(150, 0, 0, 0),
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  alignment: Alignment.center,
-                  primary: AppColors.blue,
-                  onPrimary: AppColors.white,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20.0),
+            Center(
+              child: Container(
+                width: 200.0,
+                padding: const EdgeInsets.fromLTRB(15, 0, 0, 0),
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    alignment: Alignment.center,
+                    primary: AppColors.blue,
+                    onPrimary: AppColors.white,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20.0),
+                    ),
                   ),
-                ),
-                onPressed: () {},
-                child: const Text(
-                  'Log In',
-                  style: TextStyle(
-                    fontSize: 20.0,
-                    color: Colors.white,
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/homepage');
+                  },
+                  child: const Text(
+                    'Log In',
+                    style: TextStyle(
+                      fontSize: 20.0,
+                      color: Colors.white,
+                    ),
                   ),
                 ),
               ),
             ),
+            const SizedBox(
+              height: 10.0,
+            ),
+            Row(
+              children: [
+                Container(
+                  child: const Text("New User?"),
+                  padding: const EdgeInsets.fromLTRB(150, 0, 0, 0),
+                ),
+                Container(
+                  child: TextButton(
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/signup');
+                    },
+                    child: const Text(
+                      "Sign Up",
+                      style: TextStyle(
+                        color: Colors.blue,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            )
           ],
         ),
       ),

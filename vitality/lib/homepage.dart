@@ -1,16 +1,6 @@
 import 'constants/color_constants.dart';
 import 'package:flutter/material.dart';
-
-class Appbar {
-  static AppBar getAppBar(String title) {
-    return AppBar(
-      shadowColor: AppColors.black,
-      backgroundColor: AppColors.blue,
-      centerTitle: true,
-      title: Text(title),
-    );
-  }
-}
+import 'utils/appbar.dart';
 
 class homepage extends StatefulWidget {
   const homepage({Key? key}) : super(key: key);
