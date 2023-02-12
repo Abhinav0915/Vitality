@@ -1,5 +1,8 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:vitality/constants/color_constants.dart';
+import 'package:vitality/homepage.dart';
 import 'utils/appbar.dart';
 
 class login extends StatefulWidget {
@@ -10,6 +13,9 @@ class login extends StatefulWidget {
 }
 
 class _loginState extends State<login> {
+  TextEditingController _passwordTextController = TextEditingController();
+  TextEditingController _emailTextController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -63,7 +69,7 @@ class _loginState extends State<login> {
             Center(
               child: Container(
                 width: 200.0,
-                padding: const EdgeInsets.fromLTRB(15, 0, 0, 0),
+                padding: const EdgeInsets.fromLTRB(10, 0, 20, 0),
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
                     alignment: Alignment.center,
@@ -74,7 +80,16 @@ class _loginState extends State<login> {
                     ),
                   ),
                   onPressed: () {
-                    Navigator.pushNamed(context, '/homepage');
+                    FirebaseAuth.instance
+                        .signInWithEmailAndPassword(
+                            email: _emailTextController.text,
+                            password: _passwordTextController.text)
+                        .then((value) {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => homepage()));
+                    }).onError((error, stackTrace) {
+                      print("Error ${error.toString()}");
+                    });
                   },
                   child: const Text(
                     'Log In',

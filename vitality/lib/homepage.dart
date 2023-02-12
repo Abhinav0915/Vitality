@@ -14,6 +14,7 @@ class _homepageState extends State<homepage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: Appbar.getAppBar("Vitality"),
+      drawer: Drawer(backgroundColor: AppColors.blue),
     );
   }
 }

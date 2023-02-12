@@ -4,6 +4,7 @@ import 'package:vitality/constants/color_constants.dart';
 class Appbar {
   static AppBar getAppBar(String title) {
     return AppBar(
+      automaticallyImplyLeading: false,
       shadowColor: AppColors.black,
       backgroundColor: AppColors.blue,
       centerTitle: true,

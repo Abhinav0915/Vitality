@@ -1,9 +1,12 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:vitality/homepage.dart';
 import 'package:vitality/login.dart';
 import 'package:vitality/signup.dart';
 
-void main() {
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(const Vitality());
 }
 
@@ -12,6 +15,7 @@ class Vitality extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       themeMode: ThemeMode.dark,
       theme: ThemeData(
         backgroundColor: Colors.black,
@@ -21,7 +25,8 @@ class Vitality extends StatelessWidget {
       routes: {
         '/': (context) => const login(),
         '/homepage': (context) => const homepage(),
-        '/signup' : ((context) =>  const signup()),
+        '/signup': ((context) => signup()),
+        '/login': ((context) => const login())
       },
     );
   }
