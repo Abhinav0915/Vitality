@@ -51,7 +51,7 @@ class _signupState extends State<signup> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: Appbar.getAppBar("Login"),
+      appBar: Appbar.getAppBar("Sign Up"),
       resizeToAvoidBottomInset: false,
       backgroundColor: AppColors.black,
       body: SingleChildScrollView(
@@ -157,7 +157,7 @@ class _signupState extends State<signup> {
                                   password: _passwordTextController.text)
                               .then((value) {
                             print("User Created");
-                            Navigator.pushNamed(context, '/homepage');
+                            Navigator.pushNamed(context, '/splash');
                           }).onError((error, stackTrace) {
                             print("Error ${error.toString()}");
                           });

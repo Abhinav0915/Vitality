@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:vitality/screens/homepage.dart';
 import 'package:vitality/screens/login.dart';
 import 'package:vitality/screens/signup.dart';
+import 'package:vitality/screens/splash.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -19,6 +20,7 @@ class Vitality extends StatelessWidget {
       '/homepage': (context) => homepage(),
       '/signup': (context) => signup(),
       '/login': (context) => login(),
+      '/splash': (context) => splash()
     };
     return MaterialApp(
       debugShowCheckedModeBanner: false,
