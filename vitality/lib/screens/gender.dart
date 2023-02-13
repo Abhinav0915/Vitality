@@ -1,6 +1,7 @@
 import 'dart:developer';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:vitality/screens/BMI.dart';
 import 'package:vitality/screens/login.dart';
 import '/constants/color_constants.dart';
 import 'package:flutter/material.dart';
@@ -14,10 +15,29 @@ class gender extends StatefulWidget {
 }
 
 class _genderState extends State<gender> {
+  bool isMaleSelected = false;
+  bool isFemaleSelected = false;
+
+  void selectMale() {
+    setState(() {
+      isMaleSelected = true;
+      isFemaleSelected = false;
+    });
+  }
+
+  void selectFemale() {
+    setState(() {
+      isMaleSelected = false;
+      isFemaleSelected = true;
+    });
+  }
+
+  // final TextEditingController _maleController = TextEditingController();
+  // final TextEditingController _femaleController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: Appbar.getAppBar("Vtality"),
+      appBar: Appbar.getAppBar("Vitality"),
       backgroundColor: AppColors.black,
       body: SingleChildScrollView(
           child: Column(
@@ -25,42 +45,50 @@ class _genderState extends State<gender> {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Container(
-                decoration: BoxDecoration(
-                    image: const DecorationImage(
-                        image: AssetImage("assets/images/male.png"),
-                        fit: BoxFit.cover),
-                    borderRadius: BorderRadius.circular(25.0),
-                    color: AppColors.black,
-                    boxShadow: const [
-                      BoxShadow(
-                        offset: Offset(1.0, 2.0),
-                        blurRadius: 10.0,
-                      )
-                    ]),
-                margin: EdgeInsets.fromLTRB(0, 150, 0, 0),
-                height: 150.0,
-                width: 150.0,
+              GestureDetector(
+                onTap: selectMale,
+                child: Container(
+                  decoration: BoxDecoration(
+                      image: const DecorationImage(
+                          image: AssetImage("assets/images/male.png"),
+                          fit: BoxFit.cover),
+                      borderRadius: BorderRadius.circular(25.0),
+                      color:
+                          isMaleSelected ? Colors.lightBlue : AppColors.black,
+                      boxShadow: const [
+                        BoxShadow(
+                          offset: Offset(1.0, 2.0),
+                          blurRadius: 10.0,
+                        )
+                      ]),
+                  margin: EdgeInsets.fromLTRB(0, 150, 0, 0),
+                  height: 150.0,
+                  width: 150.0,
+                ),
               ),
               const SizedBox(
                 width: 20.0,
               ),
-              Container(
-                decoration: BoxDecoration(
-                    image: const DecorationImage(
-                        image: AssetImage("assets/images/female.png"),
-                        fit: BoxFit.cover),
-                    borderRadius: BorderRadius.circular(25.0),
-                    color: AppColors.black,
-                    boxShadow: const [
-                      BoxShadow(
-                        offset: Offset(1.0, 2.0),
-                        blurRadius: 10.0,
-                      )
-                    ]),
-                margin: EdgeInsets.fromLTRB(0, 150, 0, 0),
-                height: 150.0,
-                width: 150.0,
+              GestureDetector(
+                onTap: selectFemale,
+                child: Container(
+                  decoration: BoxDecoration(
+                      image: const DecorationImage(
+                          image: AssetImage("assets/images/female.png"),
+                          fit: BoxFit.cover),
+                      borderRadius: BorderRadius.circular(25.0),
+                      color:
+                          isFemaleSelected ? Colors.lightBlue : AppColors.black,
+                      boxShadow: const [
+                        BoxShadow(
+                          offset: Offset(1.0, 2.0),
+                          blurRadius: 10.0,
+                        )
+                      ]),
+                  margin: EdgeInsets.fromLTRB(0, 150, 0, 0),
+                  height: 150.0,
+                  width: 150.0,
+                ),
               ),
             ],
           ),
@@ -93,7 +121,13 @@ class _genderState extends State<gender> {
                       borderRadius: BorderRadius.circular(20.0),
                     ),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    if (isMaleSelected || isFemaleSelected) {
+                      // Navigate to next screen
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => bmi()));
+                    }
+                  },
                   child: const Text(
                     'Next',
                     style: TextStyle(
@@ -103,6 +137,7 @@ class _genderState extends State<gender> {
                   ),
                 ),
               ),
+              
             ],
           )
         ],

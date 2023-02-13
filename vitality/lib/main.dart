@@ -4,6 +4,7 @@ import 'package:vitality/screens/gender.dart';
 import 'package:vitality/screens/login.dart';
 import 'package:vitality/screens/signup.dart';
 import 'package:vitality/screens/splash.dart';
+import 'screens/BMI.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -20,7 +21,8 @@ class Vitality extends StatelessWidget {
       '/gender': (context) => gender(),
       '/signup': (context) => signup(),
       '/login': (context) => login(),
-      '/splash': (context) => splash()
+      '/splash': (context) => splash(),
+      '/bmi': (context) => bmi(),
     };
     return MaterialApp(
       debugShowCheckedModeBanner: false,
@@ -29,7 +31,7 @@ class Vitality extends StatelessWidget {
         backgroundColor: Colors.black,
         brightness: Brightness.dark,
       ),
-      initialRoute: '/',
+      initialRoute: '/gender',
       routes: routes,
     );
   }
