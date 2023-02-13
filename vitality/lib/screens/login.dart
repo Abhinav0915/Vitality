@@ -1,7 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:vitality/constants/color_constants.dart';
-import 'package:vitality/screens/homepage.dart';
+import 'package:vitality/screens/gender.dart';
+import 'package:vitality/screens/gender.dart';
 import '../utils/appbar.dart';
 
 bool _obscureText = true;
@@ -132,7 +133,7 @@ class _loginState extends State<login> {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => homepage()));
+                                    builder: (context) => gender()));
                           }).catchError((error) {
                             showDialog(
                               context: context,

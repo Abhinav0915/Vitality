@@ -1,6 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:vitality/screens/homepage.dart';
+import 'package:vitality/screens/gender.dart';
 import 'package:vitality/screens/login.dart';
 import 'package:vitality/screens/signup.dart';
 import 'package:vitality/screens/splash.dart';
@@ -17,7 +17,7 @@ class Vitality extends StatelessWidget {
   Widget build(BuildContext context) {
     var routes = {
       '/': (context) => login(),
-      '/homepage': (context) => homepage(),
+      '/gender': (context) => gender(),
       '/signup': (context) => signup(),
       '/login': (context) => login(),
       '/splash': (context) => splash()

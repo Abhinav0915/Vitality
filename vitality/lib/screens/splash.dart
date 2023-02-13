@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:vitality/constants/color_constants.dart';
-import 'package:vitality/screens/homepage.dart';
+import 'package:vitality/screens/gender.dart';
+import 'package:vitality/screens/gender.dart';
 
 class splash extends StatefulWidget {
   const splash({Key? key}) : super(key: key);
@@ -38,8 +39,8 @@ class _splashState extends State<splash> with TickerProviderStateMixin {
             _controller
               ..duration = compos.duration
               ..forward().then((value) {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => homepage()));
+                Navigator.push(
+                    context, MaterialPageRoute(builder: (context) => gender()));
               });
           }),
           Center(child: Text("Registered Successfully")),
