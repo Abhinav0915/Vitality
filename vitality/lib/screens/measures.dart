@@ -3,19 +3,21 @@ import 'package:vitality/constants/color_constants.dart';
 import 'package:vitality/screens/gender.dart';
 import '/utils/appbar.dart';
 
-class bmi extends StatefulWidget {
-  const bmi({Key? key}) : super(key: key);
+class measures extends StatefulWidget {
+  const measures({Key? key}) : super(key: key);
 
   @override
-  State<bmi> createState() => _bmiState();
+  State<measures> createState() => _measuresState();
 }
 
-class _bmiState extends State<bmi> {
+class _measuresState extends State<measures> {
   double _heightValue = 0.0;
+  
   final TextEditingController _weightController = TextEditingController();
   final TextEditingController _ageController = TextEditingController();
   int age = 0;
   int weight = 0;
+
 
   @override
   Widget build(BuildContext context) {
@@ -35,44 +37,47 @@ class _bmiState extends State<bmi> {
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
-            Card(
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10.0)),
-              margin: const EdgeInsets.fromLTRB(20, 40, 20, 0),
-              elevation: 5.0,
-              child: Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Column(
-                  children: <Widget>[
-                    const Text(
-                      "Set Your height (cm)",
-                      style: TextStyle(
-                          fontSize: 20.0, fontWeight: FontWeight.bold),
-                    ),
-                    const SizedBox(
-                      width: 20.0,
-                    ),
-                    Slider(
-                      thumbColor: AppColors.purple,
-                      activeColor: Colors.red,
-                      value: _heightValue,
-                      min: 0.0,
-                      max: 200.0,
-                      divisions: 200,
-                      inactiveColor: Colors.grey,
-                      label: '$_heightValue',
-                      onChanged: (newValue) {
-                        setState(() {
-                          _heightValue = newValue.round().toDouble();
-                        });
-                      },
-                    ),
-                    Text(
-                      'Height: $_heightValue cm',
-                      style: const TextStyle(
-                          fontSize: 20.0, fontWeight: FontWeight.bold),
-                    ),
-                  ],
+            Container(
+              
+              child: Card(
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10.0)),
+                margin: const EdgeInsets.fromLTRB(20, 40, 20, 0),
+                elevation: 5.0,
+                child: Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Column(
+                    children: <Widget>[
+                      const Text(
+                        "Set Your height (cm)",
+                        style: TextStyle(
+                            fontSize: 20.0, fontWeight: FontWeight.bold),
+                      ),
+                      const SizedBox(
+                        width: 20.0,
+                      ),
+                      Slider(
+                        thumbColor: AppColors.purple,
+                        activeColor: Colors.red,
+                        value: _heightValue,
+                        min: 0.0,
+                        max: 200.0,
+                        divisions: 200,
+                        inactiveColor: Colors.grey,
+                        label: '$_heightValue',
+                        onChanged: (newValue) {
+                          setState(() {
+                            _heightValue = newValue.round().toDouble();
+                          });
+                        },
+                      ),
+                      Text(
+                        'Height: $_heightValue cm',
+                        style: const TextStyle(
+                            fontSize: 20.0, fontWeight: FontWeight.bold),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
@@ -183,7 +188,7 @@ class _bmiState extends State<bmi> {
                 children: [
                   const Center(
                       child: Text(
-                    "Enter Your Weight",
+                    "Enter Your Weight (Kg)",
                     style: TextStyle(
                       fontSize: 20.0,
                       fontWeight: FontWeight.bold,
@@ -200,7 +205,7 @@ class _bmiState extends State<bmi> {
                     keyboardType: TextInputType.number,
                     decoration: const InputDecoration(
                       border: InputBorder.none,
-                      hintText: 'Enter your weight',
+                      hintText: 'Enter your weight (kg)',
                       hintStyle: TextStyle(
                         color: Colors.grey,
                         fontSize: 16.0,
@@ -258,7 +263,7 @@ class _bmiState extends State<bmi> {
                   }
                 },
                 child: const Text(
-                  'Next',
+                  'Calculate BMI',
                   style: TextStyle(
                     fontSize: 20.0,
                     color: Colors.white,

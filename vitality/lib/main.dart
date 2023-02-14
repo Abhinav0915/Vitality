@@ -4,7 +4,7 @@ import 'package:vitality/screens/gender.dart';
 import 'package:vitality/screens/login.dart';
 import 'package:vitality/screens/signup.dart';
 import 'package:vitality/screens/splash.dart';
-import 'screens/BMI.dart';
+import 'screens/measures.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -22,7 +22,7 @@ class Vitality extends StatelessWidget {
       '/signup': (context) => signup(),
       '/login': (context) => login(),
       '/splash': (context) => splash(),
-      '/bmi': (context) => bmi(),
+      '/bmi': (context) => measures(),
     };
     return MaterialApp(
       debugShowCheckedModeBanner: false,

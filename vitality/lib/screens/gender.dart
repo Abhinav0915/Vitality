@@ -1,7 +1,7 @@
 import 'dart:developer';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:vitality/screens/BMI.dart';
+import 'package:vitality/screens/measures.dart';
 import 'package:vitality/screens/login.dart';
 import '/constants/color_constants.dart';
 import 'package:flutter/material.dart';
@@ -31,9 +31,6 @@ class _genderState extends State<gender> {
       isFemaleSelected = true;
     });
   }
-
-  // final TextEditingController _maleController = TextEditingController();
-  // final TextEditingController _femaleController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -125,7 +122,7 @@ class _genderState extends State<gender> {
                     if (isMaleSelected || isFemaleSelected) {
                       // Navigate to next screen
                       Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => bmi()));
+                          MaterialPageRoute(builder: (context) => measures()));
                     }
                   },
                   child: const Text(
@@ -137,7 +134,6 @@ class _genderState extends State<gender> {
                   ),
                 ),
               ),
-              
             ],
           )
         ],
