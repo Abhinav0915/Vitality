@@ -12,6 +12,7 @@ class bmi extends StatefulWidget {
 
 class _bmiState extends State<bmi> {
   double _heightValue = 0.0;
+  final TextEditingController _weightController = TextEditingController();
   final TextEditingController _ageController = TextEditingController();
   int age = 0;
 
@@ -74,11 +75,14 @@ class _bmiState extends State<bmi> {
                 ),
               ),
             ),
+            const SizedBox(
+              height: 40.0,
+            ),
             Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Container(
-                  padding: EdgeInsets.all(16),
+                  padding: EdgeInsets.all(12),
                   margin: EdgeInsets.fromLTRB(20, 20, 0, 0),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(15.0),
@@ -96,12 +100,15 @@ class _bmiState extends State<bmi> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       const Center(
-                        child: Text(
-                          "Enter Your Age",
+                          child: Text(
+                        "Enter Your Weight",
+                        style: const TextStyle(
+                          fontSize: 20.0,
+                          fontWeight: FontWeight.bold,
                         ),
-                      ),
+                      )),
                       TextField(
-                        controller: _ageController,
+                        controller: _weightController,
                         onChanged: (value) {
                           final int parsedValue = int.tryParse(value) ?? age;
                           setState(() {
@@ -111,7 +118,7 @@ class _bmiState extends State<bmi> {
                         keyboardType: TextInputType.number,
                         decoration: const InputDecoration(
                           border: InputBorder.none,
-                          hintText: 'Enter your age',
+                          hintText: 'Enter your Weight',
                           hintStyle: TextStyle(
                             color: Colors.grey,
                             fontSize: 16.0,
@@ -129,7 +136,11 @@ class _bmiState extends State<bmi> {
                                 _ageController.text = age.toString();
                               });
                             },
-                            icon: Icon(Icons.add),
+                            icon: const Icon(
+                              Icons.add,
+                              size: 40.0,
+                              color: Colors.red,
+                            ),
                           ),
                           IconButton(
                             onPressed: () {
@@ -138,7 +149,8 @@ class _bmiState extends State<bmi> {
                                 _ageController.text = age.toString();
                               });
                             },
-                            icon: Icon(Icons.remove),
+                            icon: Icon(Icons.remove,
+                                size: 40.0, color: Colors.red),
                           ),
                         ],
                       ),
@@ -146,7 +158,85 @@ class _bmiState extends State<bmi> {
                   ),
                 ),
               ],
-            )
+            ),
+            const SizedBox(
+              height: 40.0,
+            ),
+            Container(
+              padding: EdgeInsets.all(12),
+              margin: EdgeInsets.fromLTRB(20, 20, 20, 0),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(15.0),
+                border: Border.all(color: Colors.grey),
+                boxShadow: const [
+                  BoxShadow(
+                    offset: Offset(1.0, 2.0),
+                    blurRadius: 2.0,
+                  ),
+                ],
+              ),
+              height: 150.0,
+              width: 370.0,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  const Center(
+                      child: Text(
+                    "Enter Your Age",
+                    style: const TextStyle(
+                      fontSize: 20.0,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  )),
+                  TextField(
+                    controller: _ageController,
+                    onChanged: (value) {
+                      final int parsedValue = int.tryParse(value) ?? age;
+                      setState(() {
+                        age = parsedValue;
+                      });
+                    },
+                    keyboardType: TextInputType.number,
+                    decoration: const InputDecoration(
+                      border: InputBorder.none,
+                      hintText: 'Enter your age',
+                      hintStyle: TextStyle(
+                        color: Colors.grey,
+                        fontSize: 16.0,
+                      ),
+                      contentPadding: EdgeInsets.only(left: 16.0),
+                    ),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      IconButton(
+                        onPressed: () {
+                          setState(() {
+                            age++;
+                            _ageController.text = age.toString();
+                          });
+                        },
+                        icon: const Icon(
+                          Icons.add,
+                          size: 40.0,
+                          color: Colors.red,
+                        ),
+                      ),
+                      IconButton(
+                        onPressed: () {
+                          setState(() {
+                            age--;
+                            _ageController.text = age.toString();
+                          });
+                        },
+                        icon: Icon(Icons.remove, size: 40.0, color: Colors.red),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
           ],
         ),
       ),
