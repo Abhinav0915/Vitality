@@ -15,6 +15,7 @@ class _bmiState extends State<bmi> {
   final TextEditingController _weightController = TextEditingController();
   final TextEditingController _ageController = TextEditingController();
   int age = 0;
+  int weight = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -101,14 +102,14 @@ class _bmiState extends State<bmi> {
                     children: [
                       const Center(
                           child: Text(
-                        "Enter Your Weight",
+                        "Enter Your Age",
                         style: const TextStyle(
                           fontSize: 20.0,
                           fontWeight: FontWeight.bold,
                         ),
                       )),
                       TextField(
-                        controller: _weightController,
+                        controller: _ageController,
                         onChanged: (value) {
                           final int parsedValue = int.tryParse(value) ?? age;
                           setState(() {
@@ -118,7 +119,7 @@ class _bmiState extends State<bmi> {
                         keyboardType: TextInputType.number,
                         decoration: const InputDecoration(
                           border: InputBorder.none,
-                          hintText: 'Enter your Weight',
+                          hintText: 'Enter your age',
                           hintStyle: TextStyle(
                             color: Colors.grey,
                             fontSize: 16.0,
@@ -182,24 +183,24 @@ class _bmiState extends State<bmi> {
                 children: [
                   const Center(
                       child: Text(
-                    "Enter Your Age",
-                    style: const TextStyle(
+                    "Enter Your Weight",
+                    style: TextStyle(
                       fontSize: 20.0,
                       fontWeight: FontWeight.bold,
                     ),
                   )),
                   TextField(
-                    controller: _ageController,
+                    controller: _weightController,
                     onChanged: (value) {
                       final int parsedValue = int.tryParse(value) ?? age;
                       setState(() {
-                        age = parsedValue;
+                        weight = parsedValue;
                       });
                     },
                     keyboardType: TextInputType.number,
                     decoration: const InputDecoration(
                       border: InputBorder.none,
-                      hintText: 'Enter your age',
+                      hintText: 'Enter your weight',
                       hintStyle: TextStyle(
                         color: Colors.grey,
                         fontSize: 16.0,
@@ -213,8 +214,8 @@ class _bmiState extends State<bmi> {
                       IconButton(
                         onPressed: () {
                           setState(() {
-                            age++;
-                            _ageController.text = age.toString();
+                            weight++;
+                            _weightController.text = weight.toString();
                           });
                         },
                         icon: const Icon(
@@ -226,15 +227,43 @@ class _bmiState extends State<bmi> {
                       IconButton(
                         onPressed: () {
                           setState(() {
-                            age--;
-                            _ageController.text = age.toString();
+                            weight--;
+                            _weightController.text = weight.toString();
                           });
                         },
-                        icon: Icon(Icons.remove, size: 40.0, color: Colors.red),
+                        icon: const Icon(Icons.remove,
+                            size: 40.0, color: Colors.red),
                       ),
                     ],
                   ),
                 ],
+              ),
+            ),
+            Container(
+              width: 180.0,
+              margin: EdgeInsets.fromLTRB(10, 50, 0, 0),
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  alignment: Alignment.center,
+                  primary: AppColors.purple,
+                  onPrimary: AppColors.white,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20.0),
+                  ),
+                ),
+                onPressed: () {
+                  {
+                    // Navigate to next screen
+
+                  }
+                },
+                child: const Text(
+                  'Next',
+                  style: TextStyle(
+                    fontSize: 20.0,
+                    color: Colors.white,
+                  ),
+                ),
               ),
             ),
           ],
