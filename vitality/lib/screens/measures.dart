@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:vitality/constants/color_constants.dart';
+import 'package:vitality/screens/bmi.dart';
 import 'package:vitality/screens/gender.dart';
 import '/utils/appbar.dart';
 
@@ -12,12 +13,11 @@ class measures extends StatefulWidget {
 
 class _measuresState extends State<measures> {
   double _heightValue = 0.0;
-  
+
   final TextEditingController _weightController = TextEditingController();
   final TextEditingController _ageController = TextEditingController();
   int age = 0;
   int weight = 0;
-
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +38,6 @@ class _measuresState extends State<measures> {
         child: Column(
           children: <Widget>[
             Container(
-              
               child: Card(
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10.0)),
@@ -257,9 +256,38 @@ class _measuresState extends State<measures> {
                   ),
                 ),
                 onPressed: () {
-                  {
-                    // Navigate to next screen
+                  double bmiResult =
+                      weight / ((_heightValue / 100) * (_heightValue / 100));
 
+                  print(bmiResult);
+
+                  if (_heightValue == 0.0) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        content: Text('Please enter your height'),
+                      ),
+                    );
+                  } else if (age == 0) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        content: Text('Please enter your age'),
+                      ),
+                    );
+                  } else if (weight == 0) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        content: Text('Please enter your weight'),
+                      ),
+                    );
+                  } else {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => bmi(
+                          bmiResult: bmiResult,
+                        ),
+                      ),
+                    );
                   }
                 },
                 child: const Text(

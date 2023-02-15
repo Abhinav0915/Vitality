@@ -5,6 +5,7 @@ import 'package:vitality/screens/login.dart';
 import 'package:vitality/screens/signup.dart';
 import 'package:vitality/screens/splash.dart';
 import 'screens/measures.dart';
+import 'screens/bmi.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -17,12 +18,15 @@ class Vitality extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var routes = {
-      '/': (context) => login(),
-      '/gender': (context) => gender(),
-      '/signup': (context) => signup(),
-      '/login': (context) => login(),
-      '/splash': (context) => splash(),
-      '/bmi': (context) => measures(),
+      '/': (context) => const login(),
+      '/gender': (context) => const gender(),
+      '/signup': (context) => const signup(),
+      '/login': (context) => const login(),
+      '/splash': (context) => const splash(),
+      '/measures': (context) => const measures(),
+      '/bmi': (context) => bmi(
+            bmiResult: 0.0,
+          )
     };
     return MaterialApp(
       debugShowCheckedModeBanner: false,
