@@ -259,7 +259,7 @@ class _measuresState extends State<measures> {
                   double bmiResult =
                       weight / ((_heightValue / 100) * (_heightValue / 100));
 
-                  print(bmiResult);
+                  
 
                   if (_heightValue == 0.0) {
                     ScaffoldMessenger.of(context).showSnackBar(

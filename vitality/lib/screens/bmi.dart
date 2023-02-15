@@ -3,12 +3,6 @@ import 'package:vitality/constants/color_constants.dart';
 import '/utils/appbar.dart';
 import 'package:vitality/screens/measures.dart';
 
-
-
-
-
-
-
 class bmi extends StatefulWidget {
   final double bmiResult;
 
@@ -28,7 +22,7 @@ class _bmiState extends State<bmi> {
         children: [
           Container(
             margin: const EdgeInsets.fromLTRB(25, 40, 20, 0),
-            child:  Text(
+            child: Text(
               "BMI Results are here ",
               style: TextStyle(
                 fontSize: 25,
@@ -41,12 +35,21 @@ class _bmiState extends State<bmi> {
           ),
           Container(
             margin: EdgeInsets.fromLTRB(50, 40, 45, 0),
-            height: 300,
+            height: 400,
             width: 330,
-            // color: AppColors.purple,
             decoration: BoxDecoration(
+              color: AppColors.purple,
               borderRadius: BorderRadius.circular(20),
-              border: Border.all(color: AppColors.black, width: 2),
+              border: Border.all(
+                color: AppColors.black,
+                width: 2,
+              ),
+            ),
+            child: Center(
+              child: Text(
+                "${widget.bmiResult.toStringAsFixed(2)}",
+                style: TextStyle(fontSize: 30.0),
+              ),
             ),
           ),
         ],
@@ -54,3 +57,10 @@ class _bmiState extends State<bmi> {
     );
   }
 }
+
+
+
+
+// Text(
+//         "Your BMI is: ${widget.bmiResult}",
+//         style: TextStyle(fontSize: 20.0),
