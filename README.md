@@ -1,2 +1,3 @@
 # Vitality
-A Flutter Application which can be used to calculate BMI(Body Mass Index) of the body.
+
+Vitality is a health and fitness application designed to help users calculate their body mass index and track their progress towards a healthy weight range. 
