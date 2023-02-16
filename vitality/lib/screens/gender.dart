@@ -19,7 +19,7 @@ class _genderState extends State<gender> {
   bool isFemaleSelected = false;
 
   void selectMale() {
-    setState(() {
+    setState(() { 
       isMaleSelected = true;
       isFemaleSelected = false;
     });
