@@ -35,7 +35,7 @@ class Vitality extends StatelessWidget {
         backgroundColor: Colors.black,
         brightness: Brightness.dark,
       ),
-      initialRoute: '/gender',
+      initialRoute: '/',
       routes: routes,
     );
   }

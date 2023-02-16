@@ -52,7 +52,7 @@ class _signupState extends State<signup> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: Appbar.getAppBar("Sign Up"),
-      resizeToAvoidBottomInset: false,
+      resizeToAvoidBottomInset: true,
       backgroundColor: AppColors.black,
       body: SingleChildScrollView(
         child: Column(
@@ -74,6 +74,7 @@ class _signupState extends State<signup> {
               child: SizedBox(
                   width: 300,
                   child: TextFormField(
+                    textInputAction: TextInputAction.next,
                     controller: _nameController,
                     decoration: const InputDecoration(
                       suffixIcon: Icon(Icons.person),
@@ -92,6 +93,7 @@ class _signupState extends State<signup> {
               child: SizedBox(
                 width: 300,
                 child: TextFormField(
+                  textInputAction: TextInputAction.next,
                   keyboardType: TextInputType.emailAddress,
                   controller: _emailTextController,
                   decoration: const InputDecoration(
@@ -113,6 +115,7 @@ class _signupState extends State<signup> {
               child: SizedBox(
                   width: 300,
                   child: TextFormField(
+                    textInputAction: TextInputAction.done,
                     controller: _passwordTextController,
                     obscureText: _obscureText,
                     decoration: InputDecoration(

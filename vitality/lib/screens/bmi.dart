@@ -18,6 +18,7 @@ class bmi extends StatefulWidget {
 }
 
 class _bmiState extends State<bmi> {
+  
   String getCategory(double bmiResult) {
     if (bmiResult < 18.5) {
       return 'UNDERWEIGHT';

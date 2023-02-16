@@ -51,7 +51,7 @@ class _loginState extends State<login> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: Appbar.getAppBar("Login"),
-      resizeToAvoidBottomInset: false,
+      resizeToAvoidBottomInset: true,
       backgroundColor: AppColors.black,
       body: SingleChildScrollView(
         child: Column(
