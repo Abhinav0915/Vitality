@@ -22,6 +22,7 @@ class _measuresState extends State<measures> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: true,
       backgroundColor: AppColors.black,
       appBar: Appbar.getAppBar("Enter Your Measures"),
       floatingActionButton: Tooltip(
