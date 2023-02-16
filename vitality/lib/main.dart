@@ -24,9 +24,7 @@ class Vitality extends StatelessWidget {
       '/login': (context) => const login(),
       '/splash': (context) => const splash(),
       '/measures': (context) => const measures(),
-      '/bmi': (context) => bmi(
-            bmiResult: 0.0,
-          )
+      '/bmi': (context) => bmi(bmiResult: 0.0)
     };
     return MaterialApp(
       debugShowCheckedModeBanner: false,
