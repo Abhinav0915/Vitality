@@ -1,8 +1,8 @@
 import 'dart:developer';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:vitality/screens/measures.dart';
-import 'package:vitality/screens/login.dart';
+import 'package:Vitality/screens/measures.dart';
+import 'package:Vitality/screens/login.dart';
 import '/constants/color_constants.dart';
 import 'package:flutter/material.dart';
 import '/utils/appbar.dart';

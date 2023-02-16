@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-import 'package:vitality/constants/color_constants.dart';
-import 'package:vitality/screens/gender.dart';
-import 'package:vitality/screens/gender.dart';
+import 'package:Vitality/constants/color_constants.dart';
+import 'package:Vitality/screens/gender.dart';
+import 'package:Vitality/screens/gender.dart';
 
 class splash extends StatefulWidget {
   const splash({Key? key}) : super(key: key);

@@ -1,9 +1,9 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:vitality/screens/gender.dart';
-import 'package:vitality/screens/login.dart';
-import 'package:vitality/screens/signup.dart';
-import 'package:vitality/screens/splash.dart';
+import 'package:Vitality/screens/gender.dart';
+import 'package:Vitality/screens/login.dart';
+import 'package:Vitality/screens/signup.dart';
+import 'package:Vitality/screens/splash.dart';
 import 'screens/measures.dart';
 import 'screens/bmi.dart';
 

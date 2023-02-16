@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:vitality/constants/color_constants.dart';
-import 'package:vitality/screens/bmi.dart';
-import 'package:vitality/screens/gender.dart';
+import 'package:Vitality/constants/color_constants.dart';
+import 'package:Vitality/screens/bmi.dart';
+import 'package:Vitality/screens/gender.dart';
 import '/utils/appbar.dart';
 
 class measures extends StatefulWidget {
