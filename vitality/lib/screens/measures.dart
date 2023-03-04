@@ -101,14 +101,14 @@ class _measuresState extends State<measures> {
                     ],
                   ),
                   height: 150.0,
-                  width: 370.0,
+                  width: 345.0,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       const Center(
                           child: Text(
                         "Enter Your Age",
-                        style: const TextStyle(
+                        style: TextStyle(
                           fontSize: 20.0,
                           fontWeight: FontWeight.bold,
                         ),
@@ -259,8 +259,6 @@ class _measuresState extends State<measures> {
                 onPressed: () {
                   double bmiResult =
                       weight / ((_heightValue / 100) * (_heightValue / 100));
-
-                  
 
                   if (_heightValue == 0.0) {
                     ScaffoldMessenger.of(context).showSnackBar(
